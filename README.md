@@ -5,5 +5,7 @@ Using JavaFX GUI library
 # To Do
 Zoom   
 Resizable canvas   
-Get better performance   
+Get better performance  
+Apply some CSS for style
+   
 ![](Fract.PNG)
