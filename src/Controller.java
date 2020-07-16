@@ -5,9 +5,6 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -15,6 +12,7 @@ public class Controller implements Initializable{
 	
 	public Canvas canvas;
 	public PixelWriter pw;
+	public GraphicsContext ctx;
 	public TextField iterationInput;
 	public Button submit;
 	public RadioButton mandelb;
@@ -94,6 +92,7 @@ public class Controller implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		pw = canvas.getGraphicsContext2D().getPixelWriter();
+		ctx = canvas.getGraphicsContext2D();
 		paintFractal();
 	}
 }
