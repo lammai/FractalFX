@@ -6,11 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class Main extends Application {
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
@@ -22,6 +20,4 @@ public class Main extends Application {
 		primaryStage.setScene(new Scene(root, screenHeight-150, screenHeight-114));
 		primaryStage.show();
 	}
-	
-	
 }
