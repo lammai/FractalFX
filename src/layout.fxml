@@ -31,7 +31,7 @@
    <top>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <RadioButton fx:id="mandelb" mnemonicParsing="false" onAction="#handleRadioClicked" selected="true" text="Mandelbrot">
+            <RadioButton fx:id="mandelb" mnemonicParsing="false" onAction="#setFractalParam" selected="true" text="Mandelbrot">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -39,7 +39,7 @@
                   <ToggleGroup fx:id="fractalType" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="julia" mnemonicParsing="false" onAction="#handleRadioClicked" text="Julia" toggleGroup="$fractalType">
+            <RadioButton fx:id="julia" mnemonicParsing="false" onAction="#setFractalParam" text="Julia" toggleGroup="$fractalType">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
