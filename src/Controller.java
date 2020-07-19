@@ -13,15 +13,14 @@ public class Controller implements Initializable{
 	public Canvas canvas;
 	public PixelWriter pw;
 	public GraphicsContext ctx;
-	public TextField iterationInput;
-	public Button submit;
+	public Slider slider;
 	public RadioButton mandelb;
 	public RadioButton julia;
 	public ToggleGroup fractalType;
 	public Label currentItr;
 	public Label timeTaken;
 	
-	private int maxIterations = 50;	// default iteration
+	private int maxIterations = 30;	// default iteration
 	private int x, y, n;
 	private double a = 0;
 	private double b = 0;
@@ -31,11 +30,7 @@ public class Controller implements Initializable{
 	private double map(double n, double start1, double stop1, double start2, double stop2) {
 		return ((n-start1)/(stop1-start1))*(stop2-start2)+start2;
 	}
-	
-	public void handleButtonClicked() {
-		maxIterations = Integer.parseInt(iterationInput.getText());
-	}
-	
+
 	public void setFractalParam() {
 		RadioButton selected = (RadioButton) fractalType.getSelectedToggle();
 		switch (selected.getId()) {
@@ -56,7 +51,7 @@ public class Controller implements Initializable{
 	private void paintFractal() {
 		new AnimationTimer() {
 			public void handle(long currentNanoTime) {
-				currentItr.setText(Integer.toString(maxIterations));
+				maxIterations = (int) slider.getValue();
 				long startTime = System.currentTimeMillis();
 				canvas.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
 					a = map(e.getX(), 0, canvas.getWidth(), -1, 1);
