@@ -18,6 +18,7 @@ public class Main extends Application {
 		
 		primaryStage.setTitle("FractalFX");
 		primaryStage.setScene(new Scene(root, screenHeight-150, screenHeight-114));
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 }

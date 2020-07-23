@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Screen;
 
 public class Controller implements Initializable{
 	
@@ -17,7 +18,6 @@ public class Controller implements Initializable{
 	public RadioButton mandelb;
 	public RadioButton julia;
 	public ToggleGroup fractalType;
-	public Label currentItr;
 	public Label timeTaken;
 	
 	private int maxIterations = 30;	// default iteration
@@ -59,7 +59,7 @@ public class Controller implements Initializable{
 				});
 				for (x = 0; x < canvas.getWidth(); x++) {
 					for (y = 0; y < canvas.getHeight(); y++) {
-						setFractalParam();
+						setFractalParam(); //aX, aY, bX, bY double aX, double aY, double bX, double bY
 						n = 0;
 						while(xP * xP + yP * yP <= 4 && n < maxIterations) {
 							xtemp = xP * xP - yP * yP + a;
@@ -88,6 +88,8 @@ public class Controller implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		pw = canvas.getGraphicsContext2D().getPixelWriter();
 		ctx = canvas.getGraphicsContext2D();
+		canvas.setWidth(Screen.getPrimary().getBounds().getHeight()-150);
+		canvas.setHeight(Screen.getPrimary().getBounds().getHeight()-150);
 		paintFractal();
 	}
 }
