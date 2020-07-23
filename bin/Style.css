@@ -6,12 +6,7 @@
     -fx-background-color: linear-gradient(#fc2626, #050048);
 }
 
-.mandelbRadio {
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-}
-
-.julRadio {
+.mandelbRadio, .julRadio {
     -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
