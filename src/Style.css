@@ -1,3 +1,12 @@
-body {
-	-fx-background-color: #383838;
+.root {
+	-fx-font-family: 'Noto Sans', sans-serif;
+	-fx-font-size: 12px;
+}
+.hbox {
+    -fx-background-color: linear-gradient(#fc2626, #050048);
+}
+
+.mandelbRadio, .julRadio {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
 }
