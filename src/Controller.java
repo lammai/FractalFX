@@ -20,7 +20,7 @@ public class Controller implements Initializable{
 	public ToggleGroup fractalType;
 	public Label timeTaken;
 	
-	private int maxIterations = 30;	// default iteration
+	private int maxIterations = 50;	// default iteration
 	private int x, y, n;
 	private double a = 0;
 	private double b = 0;
