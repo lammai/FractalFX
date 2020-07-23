@@ -15,7 +15,6 @@ public class Main extends Application {
 		
 		// Get screen height
 		double screenHeight = Screen.getPrimary().getBounds().getHeight();
-		
 		primaryStage.setTitle("FractalFX");
 		primaryStage.setScene(new Scene(root, screenHeight-150, screenHeight-114));
 		primaryStage.setResizable(false);
