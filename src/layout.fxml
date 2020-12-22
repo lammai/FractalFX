@@ -3,9 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.canvas.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
 
 <BorderPane stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <center>
@@ -44,7 +42,13 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </RadioButton>
-            <Region prefWidth="257.0" />
+            <Region prefWidth="69.0" />
+            <ColorPicker fx:id="colorPicker">
+               <HBox.margin>
+                  <Insets top="9.0" />
+               </HBox.margin>
+            </ColorPicker>
+            <Region prefWidth="69.0" />
             <Label stylesheets="@Style.css" text="Max iterations: " textFill="#c3c3c3">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="3.0" top="10.0" />

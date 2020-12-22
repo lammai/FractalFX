@@ -4,6 +4,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.animation.AnimationTimer;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -19,6 +20,7 @@ public class Controller implements Initializable{
 	public RadioButton julia;
 	public ToggleGroup fractalType;
 	public Label timeTaken;
+	public ColorPicker colorPicker;
 	
 	private int maxIterations = 50;	// default iteration
 	private int x, y, n;
@@ -27,24 +29,23 @@ public class Controller implements Initializable{
 	private double xtemp;
 	private double xP, yP;
 	
-	private double map(double n, double start1, double stop1, double start2, double stop2) {
-		return ((n-start1)/(stop1-start1))*(stop2-start2)+start2;
+	private double map(double n, double stop1, double start2, double stop2) {
+		return ((n- (double) 0)/(stop1- (double) 0))*(stop2-start2)+start2;
 	}
 
 	public void setFractalParam() {
 		RadioButton selected = (RadioButton) fractalType.getSelectedToggle();
 		switch (selected.getId()) {
-		default:
-		case "mandelb":
-			a = map(x, 0, canvas.getWidth(), -2, 1);
-			b = map(y, 0, canvas.getHeight(), -1.5, 1.5);
-			xP = 0;
-			yP = 0;
-			break;
-		case "julia":
-			xP = map(x, 0, canvas.getWidth(), -1.5, 1.5);
-			yP = map(y, 0, canvas.getHeight(), -1.5, 1.5);
-			break;
+			case "mandelb" -> {
+				a = map(x, canvas.getWidth(), -2, 1);
+				b = map(y, canvas.getHeight(), -1.5, 1.5);
+				xP = 0;
+				yP = 0;
+			}
+			case "julia" -> {
+				xP = map(x, canvas.getWidth(), -1.5, 1.5);
+				yP = map(y, canvas.getHeight(), -1.5, 1.5);
+			}
 		}
 	}
 	
@@ -54,8 +55,8 @@ public class Controller implements Initializable{
 				maxIterations = (int) slider.getValue();
 				long startTime = System.currentTimeMillis();
 				canvas.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
-					a = map(e.getX(), 0, canvas.getWidth(), -1, 1);
-					b = map(e.getY(), 0, canvas.getHeight(), -1, 1);
+					a = map(e.getX(), canvas.getWidth(), -1, 1);
+					b = map(e.getY(), canvas.getHeight(), -1, 1);
 				});
 				for (x = 0; x < canvas.getWidth(); x++) {
 					for (y = 0; y < canvas.getHeight(); y++) {
@@ -70,12 +71,15 @@ public class Controller implements Initializable{
 						if (n < maxIterations) {
 							double newC = ((double)n)/((double)maxIterations);
 							Color c;
-							if(newC > 0.4) c = Color.color(1, newC, 0);
-							else c = Color.color(newC, 0, Math.abs(newC-0.3));
+							double red = Math.abs(colorPicker.getValue().getRed() - newC);
+							double green = Math.abs(colorPicker.getValue().getGreen() - newC);
+							double blue = Math.abs(colorPicker.getValue().getBlue() - newC);
+							if(newC > 0.4) c = Color.color(blue, green, red);		// inner color
+							else c = Color.color(red, green, Math.abs(blue-0.3));	// outer color
 							pw.setColor(x, y, c);
 						}
 						else {
-							pw.setColor(x, y, Color.BLACK);
+							pw.setColor(x, y, Color.WHITE);
 						}
 					}
 				}
@@ -90,6 +94,7 @@ public class Controller implements Initializable{
 		ctx = canvas.getGraphicsContext2D();
 		canvas.setWidth(Screen.getPrimary().getBounds().getHeight()-150);
 		canvas.setHeight(Screen.getPrimary().getBounds().getHeight()-150);
+		colorPicker.setValue(Color.web("6f2741"));
 		paintFractal();
 	}
 }
